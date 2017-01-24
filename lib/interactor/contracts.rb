@@ -16,6 +16,7 @@ module Interactor
         fail NotAnInteractor, "#{descendant} does not include `Interactor'"
       end
       descendant.extend(ClassMethods)
+      descendant.extend(Forwardable)
     end
 
     # Defines the class-level DSL that enables Interactor contracts.
@@ -84,6 +85,8 @@ module Interactor
       def expects(&block)
         self.expectations = extend_schema(expectations, &block)
         define_expectations_hook
+
+        def_delegators :context, *self.expectations.new.rules.keys
       end
 
       # The expectations for arguments passed into the Interactor.
