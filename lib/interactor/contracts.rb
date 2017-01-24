@@ -37,7 +37,7 @@ module Interactor
       #     include Interactor::Contracts
       #
       #     assures do
-      #       attr(:person, &:filled?)
+      #       required(:person).filled
       #     end
       #
       #     def call
@@ -68,7 +68,7 @@ module Interactor
       #     include Interactor::Contracts
       #
       #     expects do
-      #       attr(:name, &:filled?)
+      #       required(:name).filled
       #     end
       #
       #     def call
@@ -102,7 +102,7 @@ module Interactor
       #     include Interactor::Contracts
       #
       #     expects do
-      #       attr(:name, &:filled?)
+      #       required(:name).filled
       #     end
       #
       #     on_violation do |violations|
