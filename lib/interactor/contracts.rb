@@ -164,7 +164,7 @@ module Interactor
 
         after do
           assurances = self.class.assurances.new
-          result = assurances.call(context)
+          result = assurances.call(context.to_h)
 
           unless result.success?
             violations = result.messages.map do |property, messages|
@@ -189,7 +189,7 @@ module Interactor
 
         before do
           expectations = self.class.expectations.new
-          result = expectations.call(context)
+          result = expectations.call(context.to_h)
 
           unless result.success?
             violations = result.messages.map do |property, messages|
