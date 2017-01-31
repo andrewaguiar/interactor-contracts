@@ -17,6 +17,7 @@ module Interactor
         fail NotAnInteractor, "#{descendant} does not include `Interactor'"
       end
       descendant.extend(DSL)
+      descendant.extend(Forwardable)
     end
 
     private

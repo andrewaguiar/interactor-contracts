@@ -46,6 +46,23 @@ module Interactor
       def call(context)
         Outcome.new(@terms.new.call(context.to_h))
       end
+
+      # Returns all properties defined in add
+      #
+      # @example
+      #   terms = Interactor::Contracts::Terms.new
+      #   terms.add do
+      #     required(:name).filled
+      #     required(:email).filled
+      #   end
+      #   puts terms.keys
+      #   [:name, :email]
+      #
+      # @api public
+      # @return [Array]
+      def keys
+        @terms.new.rules.keys
+      end
     end
   end
 end

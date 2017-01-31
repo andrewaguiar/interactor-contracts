@@ -73,6 +73,7 @@ module Interactor
       def expects(&block)
         contract.add_expectation(&block)
         define_expectations_hook
+        def_delegators :context, *contract.expectations.keys
       end
 
       # Defines a consequence that is called when a contract is breached
