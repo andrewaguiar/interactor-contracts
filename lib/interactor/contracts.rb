@@ -2,6 +2,7 @@ require "dry-validation"
 require "interactor"
 require "interactor/contracts/dsl"
 require "interactor/contracts/errors"
+require "interactor/contracts/forwarder"
 
 module Interactor
   # Create a contract for your interactor that specifies what it expects as
@@ -17,6 +18,7 @@ module Interactor
         fail NotAnInteractor, "#{descendant} does not include `Interactor'"
       end
       descendant.extend(DSL)
+      descendant.extend(Forwarder)
     end
 
     private

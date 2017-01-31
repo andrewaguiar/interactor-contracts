@@ -119,6 +119,26 @@ RSpec.describe Interactor::Contracts do
   end
 
   describe ".expects" do
+    it "delegates all params to context" do
+      interactor = Class.new do
+        include Interactor
+        include Interactor::Contracts
+
+        expects do
+          required(:dwarf).filled
+        end
+
+        def call
+          context.output = dwarf.name
+        end
+      end
+
+      result = interactor.call(dwarf: OpenStruct.new(name: "Thorin Escudo de Carvalho"))
+
+      expect(result).to be_a_success
+      expect(result.output).to eq("Thorin Escudo de Carvalho")
+    end
+
     it "creates and uses a schema to validate inputs" do
       interactor = Class.new do
         include Interactor
