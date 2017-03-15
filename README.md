@@ -67,7 +67,9 @@ end
 
 The `expects` block defines the expectations: the expected attributes of the
 context prior to the interactor running, along with any predicates that further
-constrain the input.
+constrain the input. Also as you define expectations you gain a shortcut to 
+context params, so instead of `context.email` you can use just `email` to 
+access the param `if user = User.authenticate(email, password)`.
 
 The `assures` block defines the assurances: the expected attributes of the
 context after the interactor runs and successfully completes, along with any
